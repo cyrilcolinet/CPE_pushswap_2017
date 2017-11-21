@@ -10,9 +10,11 @@
 
 # include "pushswap.h"
 
-list_t 		*create_list(void);
-int 		list_size(list_t *list);
-void 		put_data_in_list(list_t **list, char *arg);
-list_t 		*params_to_list(int ac, char **av);
+list_t 		*create_elem(int value);
+list_t 		*insert_end_elem(list_t *list, int value);
+list_t 		*insert_first_elem(list_t *list, int value);
+list_t 		*last_elem(list_t *list);
+
+void 		initiate_flags(flag_t *flag);
 
 # endif

@@ -263,7 +263,7 @@ void my_sort_int_array(int *array, int size);
  ** @param (char) *str
  ** @return (void)
  **/
-void my_printerr(char *str);
+void my_puterr(char *str);
 
 /**
  ** Malloc own (exit wen malloc failed)

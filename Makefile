@@ -1,54 +1,53 @@
 ##
 ## EPITECH PROJECT, 2017
-## my_printf
+## pushswap
 ## File description:
 ## Makefile
 ##
 
-.PHONY			= 	all re clean fclean tests
+.PHONY			=	all, library, clean, fclean, re, tests
 
 SRC_DIR			=	./src
 
-UT_DIR			=	./tests
+TESTS_DIR		=	./tests
+
+LIB_DIR			=	./lib
+
+SRC 			=	$(SRC_DIR)/pushswap.c			\
+					$(SRC_DIR)/rotating.c			\
+					$(SRC_DIR)/sorting.c			\
+					$(SRC_DIR)/swaping_pushing.c	\
+					$(SRC_DIR)/utils.c 				\
+					$(SRC_DIR)/list_utils.c
+
+UT_SRC			=	$(TESTS_DIR)/pushswap_tests1.c
 
 INC_DIR			=	./include
 
-SRC 			= 	$(SRC_DIR)/my_functions.c 			\
-					$(SRC_DIR)/my_printf.c 				\
-					$(SRC_DIR)/my_put_nbr.c				\
-					$(SRC_DIR)/print_char.c 			\
-					$(SRC_DIR)/print_integer.c 			\
-					$(SRC_DIR)/print_octal.c 			\
-					$(SRC_DIR)/print_string.c 			\
-					$(SRC_DIR)/print_uint.c 			\
-					$(SRC_DIR)/utils.c
+NAME			=	pushswap
 
-OBJ				= 	$(SRC:.c=.o)
+CFLAGS			= 	-Wall -Wextra -I$(INC_DIR) -L$(LIB_DIR) -lmy
 
-UT_SRC			=	$(UT_DIR)/my_printf_tests_one.c 	\
-					$(UT_DIR)/my_printf_tests_two.c
+all:			$(NAME)
+				@./units
 
-CFLAGS			=	-Wall -Wextra -I$(INC_DIR)
+library:
+				@make -C $(LIB_DIR)/my 
 
-LDFLAGS			= 	-lcriterion -lgcov
+$(NAME):		library
+				@gcc -o $(NAME) $(SRC) $(SRC_DIR)/main.c $(CFLAGS)
+				@gcc -o units $(SRC) $(UT_SRC) -lcriterion -lgcov --coverage $(CFLAGS)
 
-NAME			= 	libmy.a
+clean:
+				@rm -f *.o
+				@rm -f *.gc*
 
-all:			$(NAME) tests 		## Compile
+fclean:			clean
+				@rm -f $(NAME)
+				@rm -f units
+				@make fclean -C $(LIB_DIR)/my
 
-$(NAME):		$(OBJ) 				## Compile inta library named $(NAME)
-				ar rc $(NAME) $(OBJ)
+re:				fclean all
 
-clean: 								## Clean output files, and coverage files
-				rm -f $(OBJ)
-				rm -f *.gc*
-
-fclean:			clean 				## Clean units and $(NAME) file and basic clean
-				rm -f $(NAME)
-				rm -f units
-
-re:				fclean all 			## Recompile
-
-tests:			$(NAME) 			## Unitary tests
-				cc -o units $(SRC) $(UT_SRC) $(CFLAGS) $(LDFLAGS) --coverage -L. -lmy
-				./units
+tests:
+				@./units

@@ -5,50 +5,74 @@
 ** utils function
 */
 
-# include <stdlib.h>
-
+# include "my.h"
 # include "pushswap.h"
 # include "utils.h"
 
-list_t *create_list(void)
+list_t *create_elem(int value)
 {
 	list_t *list = malloc(sizeof(list_t*));
 
 	if (list == NULL)
-		return NULL;
+		return (NULL);
+
+	list->value = value;
+	list->prev = NULL;
+	list->next = NULL;
 
 	return (list);
 }
 
-int list_size(list_t *list)
+list_t *insert_end_elem(list_t *list, int value)
 {
-	list_t *temp = list;
-	int size = 0;
+	list_t *tmp = list;
+	list_t *elem = create_elem(value);
 
-	while (temp != NULL) {
-		size++;
-		temp = temp->next;
+	if (list == NULL) {
+		return (elem);
+	} else {
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+
+		tmp->next = elem;
+		elem->prev = tmp;
 	}
 
-	return (size);
+	//free_list(elem);
+	return (list);
 }
 
-void put_data_in_list(list_t **list, char *arg)
+list_t *insert_first_elem(list_t *list, int value)
 {
-	list_t *elem = malloc(sizeof(*elem));
-	elem->num = arg;
-	elem->next = *list;
-	*list = elem;
-	free(elem);
-}
+	list_t *tmp = list;
+	list_t *elem = create_elem(value);
 
-list_t *params_to_list(int ac, char **av)
-{
-	list_t *list = NULL;
+	if (list == NULL) {
+		return (elem);
+	} else {
+		while (tmp->prev != NULL)
+			tmp = tmp->prev;
 
-	for (int i = 0; i < ac; i++) {
-		put_data_in_list(&list, av[i]);
+		tmp->prev = elem;
+		elem->next = tmp;
+		list = list->prev;
 	}
+
+	//free_list(elem);
+	return (list);
+}
+
+list_t *last_elem(list_t *list)
+{
+	while (list->next != NULL)
+		list = list->next;
 
 	return (list);
+}
+
+void initiate_flags(flag_t *flag)
+{
+	flag->one = 0;
+	flag->two = 1;
+	flag->passed = false;
 }
