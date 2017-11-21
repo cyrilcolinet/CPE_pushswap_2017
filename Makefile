@@ -29,25 +29,26 @@ NAME			=	pushswap
 CFLAGS			= 	-Wall -Wextra -I$(INC_DIR) -L$(LIB_DIR) -lmy
 
 all:			$(NAME)
-				@./units
+				./units
 
 library:
-				@make -C $(LIB_DIR)/my 
+				make -C $(LIB_DIR)/my 
 
 $(NAME):		library
-				@gcc -o $(NAME) $(SRC) $(SRC_DIR)/main.c $(CFLAGS)
-				@gcc -o units $(SRC) $(UT_SRC) -lcriterion -lgcov --coverage $(CFLAGS)
+				gcc -o $(NAME) $(SRC) $(SRC_DIR)/main.c $(CFLAGS)
+				gcc -o units $(SRC) $(UT_SRC) -lcriterion -lgcov --coverage $(CFLAGS)
 
 clean:
-				@rm -f *.o
-				@rm -f *.gc*
+				rm -f *.o
+				rm -f *.gc*
+				rm -f vgcore.*
 
 fclean:			clean
-				@rm -f $(NAME)
-				@rm -f units
-				@make fclean -C $(LIB_DIR)/my
+				rm -f $(NAME)
+				rm -f units
+				make fclean -C $(LIB_DIR)/my
 
 re:				fclean all
 
 tests:
-				@./units
+				./units
