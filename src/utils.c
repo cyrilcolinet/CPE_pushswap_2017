@@ -11,10 +11,12 @@
 
 list_t *create_elem(int value)
 {
-	list_t *list = malloc(sizeof(list_t*));
+	list_t *list = malloc(sizeof(list_t));
 
-	if (list == NULL)
-		return (NULL);
+	if (list == NULL) {
+		my_puterr("Malloc failed. Aborded.\n");
+		exit(84);
+	}
 
 	list->value = value;
 	list->prev = NULL;
@@ -38,7 +40,6 @@ list_t *insert_end_elem(list_t *list, int value)
 		elem->prev = tmp;
 	}
 
-	//free_list(elem);
 	return (list);
 }
 
@@ -58,7 +59,6 @@ list_t *insert_first_elem(list_t *list, int value)
 		list = list->prev;
 	}
 
-	//free_list(elem);
 	return (list);
 }
 

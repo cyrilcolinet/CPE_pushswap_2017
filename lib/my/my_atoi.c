@@ -7,8 +7,28 @@
 
 int my_atoi(char *str)
 {
-	int result = 0;
-	for (int i = 0; str[i] != 0; i++)
-		result = (result * 10) + (str[i] - '0');
-	return (result);
+	unsigned int i = 0;
+	int number = 0;
+	int neg = 0;
+
+	if (!(str))
+		return (0);
+
+	if (str[0] == '-') {
+		i = 1;
+		neg = 1;
+	} else if (str[0] == '+') {
+		i = 1;
+	}
+
+	while (str[i] >= 48 && str[i] <= 57) {
+		number *= 10;
+		number += ((int)str[i] - 48);
+		i++;
+	}
+
+	if (neg == 1)
+		number = -number;
+
+	return (number);
 }

@@ -37,12 +37,8 @@ void pushswap(list_t *one)
 			flag.passed = true;
 	}
 
-	/*free(one->prev);
-	free(one->next);
-	free(one);
-	free(two->prev);
-	free(two->next);
-	free(two);*/
+	free_list(one);
+	free_list(two);
 }
 
 bool check_parameter(char *arg)
@@ -65,13 +61,13 @@ int pushswap_main(int ac, char **av)
 	int offset = 1;
 	list_t *one = NULL;
 
-	if (ac == 2 && !check_parameter(av[offset])) {
-		my_puterr("Bad argument. Check if argument contains only digits and \n");
+	if (ac <= 2) {
+		my_puterr("Usage: ./pushswap <num1> <num2> ... <n>\n");
 		return (84);
 	} else if (ac > 2) {
 		while (av[offset]) {
 			if (!check_parameter(av[offset])) {
-				my_puterr("Arguments must contains only digits.\n");
+				my_puterr("Only integer authorized.\n");
 				return (84);
 			}
 

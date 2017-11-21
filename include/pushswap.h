@@ -43,5 +43,6 @@ void 		push_one(list_t **one, list_t **two, flag_t *flag);
 void 		push_two(list_t **one, list_t **two, flag_t *flag);
 
 void 		free_list(list_t *list);
+void 		show_list(list_t *list);
 
 # endif

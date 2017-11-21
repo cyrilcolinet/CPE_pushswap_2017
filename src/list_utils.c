@@ -5,12 +5,13 @@
 ** list_utils functions
 */
 
+# include "my.h"
 # include "utils.h"
 # include "pushswap.h"
 
 void free_list(list_t *list)
 {
-	if(list == NULL)
+	if (list == NULL)
 		return;
 
 	if (list->prev != NULL)
@@ -20,4 +21,18 @@ void free_list(list_t *list)
 		free(list->next);
 
 	free(list);
+}
+
+void show_list(list_t *list)
+{
+	list_t *tmp = list;
+
+	my_putstr("List sorted: ");
+	while (tmp != NULL) {
+		my_put_nbr(tmp->value);
+		my_putchar(' ');
+		tmp = tmp->next;
+	}
+
+	my_putchar('\n');
 }
