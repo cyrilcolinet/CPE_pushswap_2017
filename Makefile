@@ -18,7 +18,8 @@ SRC 			=	$(SRC_DIR)/pushswap.c			\
 					$(SRC_DIR)/sorting.c			\
 					$(SRC_DIR)/swaping_pushing.c	\
 					$(SRC_DIR)/utils.c 				\
-					$(SRC_DIR)/list_utils.c
+					$(SRC_DIR)/list_utils.c 		\
+					$(SRC_DIR)/displaying.c
 
 UT_SRC			=	$(TESTS_DIR)/pushswap_tests1.c
 

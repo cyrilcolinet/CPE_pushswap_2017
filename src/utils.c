@@ -70,9 +70,10 @@ list_t *last_elem(list_t *list)
 	return (list);
 }
 
-void initiate_flags(flag_t *flag)
+void initiate_flags(flag_t *flag, bool flaged)
 {
-	flag->one = 0;
-	flag->two = 1;
+	flag->one = false;
+	flag->two = true;
 	flag->passed = false;
+	flag->flagged = flaged;
 }

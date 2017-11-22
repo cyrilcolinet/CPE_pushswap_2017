@@ -33,6 +33,4 @@ void show_list(list_t *list)
 		my_putchar(' ');
 		tmp = tmp->next;
 	}
-
-	my_putchar('\n');
 }

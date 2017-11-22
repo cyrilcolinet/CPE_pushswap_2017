@@ -38,13 +38,13 @@ bool sort_desc(list_t *two)
 	return (false);
 }
 
-void sort_two(list_t **two, flag_t *flag)
+void sort_two(list_t *one, list_t **two, flag_t *flag)
 {
 	if ((*two)->next != NULL) {
 		if ((*two)->value < last_elem(*two)->value)
-			*two = rotate_two(*two);
+			*two = rotate_two(one, *two, *flag);
 		if ((*two)->value < (*two)->next->value)
-			*two = swap_two(*two);
+			*two = swap_two(one, *two, *flag);
 		flag->two = sort_desc(*two);
 	}
 

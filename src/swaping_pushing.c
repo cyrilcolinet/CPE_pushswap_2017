@@ -9,7 +9,7 @@
 # include "utils.h"
 # include "pushswap.h"
 
-list_t *swap_one(list_t *one, list_t *two)
+list_t *swap_one(list_t *one, list_t *two, flag_t flag)
 {
 	one->prev = one->next;
 	one->next->next->prev = one->next->prev;
@@ -18,13 +18,17 @@ list_t *swap_one(list_t *one, list_t *two)
 	one->prev->prev = NULL;
 	one = one->prev;
 
-	my_putstr("sa");
-	my_putchar(((sort_asc(one) && two == NULL) ? '\n' : ' '));
+	if (!flag.flagged) {
+		my_putstr("sa");
+		my_putchar(((sort_asc(one) && two == NULL) ? '\n' : ' '));
+	} else {
+		display_lists(one, two, "sa", flag);
+	}
 
 	return (one);
 }
 
-list_t *swap_two(list_t *two)
+list_t *swap_two(list_t *one, list_t *two, flag_t flag)
 {
 	two->prev = two->next;
 
@@ -41,7 +45,11 @@ list_t *swap_two(list_t *two)
 		two = two->prev;
 	}
 
-	my_putstr("sb ");
+	if (!flag.flagged) {
+		my_putstr("sb ");
+	} else {
+		display_lists(one, two, "sb", flag);
+	}
 
 	return (two);
 }
@@ -60,8 +68,12 @@ void push_one(list_t **one, list_t **two, flag_t *flag)
 		flag->two = true;
 	}
 
-	my_putstr("pa");
-	my_putchar(((sort_asc(*one) && *two == NULL) ? '\n' : ' '));
+	if (!flag->flagged) {
+		my_putstr("pa");
+		my_putchar(((sort_asc(*one) && *two == NULL) ? '\n' : ' '));
+	} else {
+		display_lists(*one, *two, "pa", *flag);
+	}
 }
 
 void push_two(list_t **one, list_t **two, flag_t *flag)
@@ -77,5 +89,9 @@ void push_two(list_t **one, list_t **two, flag_t *flag)
 		*one = NULL;
 	}
 
-	my_putstr("pb ");
+	if (!flag->flagged) {
+		my_putstr("pb ");
+	} else {
+		display_lists(*one, *two, "pb", *flag);
+	}
 }

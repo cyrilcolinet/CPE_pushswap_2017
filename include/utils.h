@@ -15,6 +15,6 @@ list_t 		*insert_end_elem(list_t *list, int value);
 list_t 		*insert_first_elem(list_t *list, int value);
 list_t 		*last_elem(list_t *list);
 
-void 		initiate_flags(flag_t *flag);
+void 		initiate_flags(flag_t *flag, bool flaged);
 
 # endif
