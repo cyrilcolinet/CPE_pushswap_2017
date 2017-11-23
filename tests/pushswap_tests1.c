@@ -17,13 +17,15 @@ void redirect_std_one()
 
 Test(pushswap, already_sorted_list, .init = redirect_std_one)
 {
-	char *av[6];
-	av[0] = "2";
-	av[1] = "1";
-	av[2] = "3";
-	av[3] = "6";
-	av[4] = "5";
-	av[5] = "8";
+	char **av = malloc(sizeof(char**) * 7);
+
+	av[0] = "./pushswap";
+	av[1] = "2";
+	av[2] = "1";
+	av[3] = "3";
+	av[4] = "6";
+	av[5] = "5";
+	av[6] = "8";
 	pushswap_main(7, av);
 
 	cr_assert_stdout_eq_str("sa pb pb pb sa pa pa pa");

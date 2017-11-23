@@ -16,6 +16,8 @@ void pushswap(list_t *one, bool flaged)
 	flag_t flag;
 
 	initiate_flags(&flag, flaged);
+	display_iteration(0, flag);
+	display_lists(one, two, "nothing, default list", flag);
 	while (!flag.passed) {
 		if (one->value > last_elem(one)->value) {
 			display_iteration(iterations++, flag);
@@ -30,7 +32,7 @@ void pushswap(list_t *one, bool flaged)
 		if (!flag.one && one->value < one->next->value) {
 			display_iteration(iterations++, flag);
 			push_two(&one, &two, &flag);
-			display_iteration(iterations++, flag);
+			//display_iteration(iterations++, flag);
 			sort_two(one, &two, &flag);
 		}
 

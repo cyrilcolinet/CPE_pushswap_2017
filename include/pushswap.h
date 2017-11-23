@@ -22,6 +22,7 @@ struct flag {
 	bool 			two;
 	bool 			passed;
 	bool 			flagged;
+	int 			iterations;
 };
 
 typedef struct list list_t;
