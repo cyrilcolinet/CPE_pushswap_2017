@@ -32,7 +32,6 @@ void pushswap(list_t *one, bool flaged)
 		if (!flag.one && one->value < one->next->value) {
 			display_iteration(iterations++, flag);
 			push_two(&one, &two, &flag);
-			//display_iteration(iterations++, flag);
 			sort_two(one, &two, &flag);
 		}
 

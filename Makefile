@@ -25,7 +25,7 @@ UT_SRC			=	$(TESTS_DIR)/pushswap_tests1.c
 
 INC_DIR			=	./include
 
-NAME			=	pushswap
+NAME			=	push_swap
 
 CFLAGS			= 	-Wall -Wextra -I$(INC_DIR) -L$(LIB_DIR) -lmy
 
