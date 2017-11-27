@@ -20,23 +20,23 @@ void pushswap(list_t *one, bool flaged)
 	display_lists(one, two, "nothing, default list", flag);
 	while (!flag.passed) {
 		if (one->value > last_elem(one)->value) {
-			display_iteration(iterations++, flag);
+			display_iteration((iterations++), flag);
 			one = rotate_one(one, two, flag);
 		} else if (one->value > one->next->value) {
-			display_iteration(iterations++, flag);
+			display_iteration((iterations++), flag);
 			one = swap_one(one, two, flag);
 		}
 
 		flag.one = sort_asc(one);
 
 		if (!flag.one && one->value < one->next->value) {
-			display_iteration(iterations++, flag);
+			display_iteration((iterations++), flag);
 			push_two(&one, &two, &flag);
 			sort_two(one, &two, &flag);
 		}
 
 		while (flag.one && two != NULL) {
-			display_iteration(iterations++, flag);
+			display_iteration((iterations++), flag);
 			push_one(&one, &two, &flag);
 			flag.one = sort_asc(one);
 		}

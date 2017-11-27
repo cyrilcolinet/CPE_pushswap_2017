@@ -48,7 +48,7 @@ void 		free_list(list_t *list);
 void 		show_list(list_t *list);
 
 void 		display_iteration(int iteration, flag_t flag);
-void		display_lists(list_t *one, list_t *two, char *action, flag_t flag);
+void		display_lists(list_t *a, list_t *b, char *c, flag_t f);
 void 		display_action(char *action);
 
 # endif
