@@ -20,7 +20,9 @@ list_t *swap_one(list_t *one, list_t *two, flag_t flag)
 
 	if (!flag.flagged) {
 		my_putstr("sa");
-		my_putchar(((sort_asc(one) && two == NULL) ? '\n' : ' '));
+		
+		if (!(sort_asc(one) && two == NULL))
+			my_putchar(' ');
 	} else {
 		display_lists(one, two, "sa", flag);
 	}
@@ -70,7 +72,9 @@ void push_one(list_t **one, list_t **two, flag_t *flag)
 
 	if (!flag->flagged) {
 		my_putstr("pa");
-		my_putchar(((sort_asc(*one) && *two == NULL) ? '\n' : ' '));
+
+		if (!(sort_asc(*one) && *two == NULL))
+			my_putchar(' ');
 	} else {
 		display_lists(*one, *two, "pa", *flag);
 	}

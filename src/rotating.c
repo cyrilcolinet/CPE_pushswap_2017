@@ -22,7 +22,9 @@ list_t *rotate_one(list_t *one, list_t *two, flag_t flag)
 
 	if (!flag.flagged) {
 		my_putstr("ra");
-		my_putchar(((sort_asc(one) && two == NULL) ? '\n' : ' '));
+
+		if (!(sort_asc(one) && two == NULL))
+			my_putchar(' ');
 	} else {
 		display_lists(one, two, "ra", flag);
 	}

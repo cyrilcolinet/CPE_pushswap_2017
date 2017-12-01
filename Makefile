@@ -30,14 +30,12 @@ NAME			=	push_swap
 CFLAGS			= 	-Wall -Wextra -I$(INC_DIR) -L$(LIB_DIR) -lmy
 
 all:			$(NAME)
-				./units
 
 library:
 				make -C $(LIB_DIR)/my 
 
 $(NAME):		library
 				gcc -o $(NAME) $(SRC) $(SRC_DIR)/main.c $(CFLAGS)
-				gcc -o units $(SRC) $(UT_SRC) -lcriterion -lgcov --coverage $(CFLAGS)
 
 clean:
 				rm -f *.o
@@ -51,5 +49,6 @@ fclean:			clean
 
 re:				fclean all
 
-tests:
+tests_run:		re
+				gcc -o units $(SRC) $(UT_SRC) -lcriterion -lgcov --coverage $(CFLAGS)
 				./units

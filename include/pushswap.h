@@ -31,6 +31,7 @@ typedef struct flag flag_t;
 void 		pushswap(list_t *one, bool flagged);
 bool 		check_parameter(char *arg);
 bool		check_flags(char *str);
+bool		checkunique_args(int ac, char **av);
 int			pushswap_main(int ac, char **av);
 
 bool 		sort_asc(list_t *one);

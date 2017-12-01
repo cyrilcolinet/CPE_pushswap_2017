@@ -5,6 +5,8 @@
 ** pushswap functions
 */
 
+# include <stdio.h>
+
 # include "pushswap.h"
 # include "utils.h"
 # include "my.h"
@@ -18,6 +20,7 @@ void pushswap(list_t *one, bool flaged)
 	initiate_flags(&flag, flaged);
 	display_iteration(0, flag);
 	display_lists(one, two, "nothing, default list", flag);
+	
 	while (!flag.passed) {
 		if (one->value > last_elem(one)->value) {
 			display_iteration((iterations++), flag);
@@ -64,6 +67,17 @@ bool check_parameter(char *arg)
 	return (true);
 }
 
+bool check_unique_args(int ac, char **av)
+{
+	for (int i = 1; i < ac; i++)
+		for (int j = 1; j < ac; j++)
+			if (i != j)
+				if (my_atoi(av[i]) == my_atoi(av[j]))
+					return (false);
+
+	return (true);
+}
+
 bool check_flags(char *str)
 {
 	if (str[0] == '-' && str[1] == 'v')
@@ -92,7 +106,13 @@ int pushswap_main(int ac, char **av)
 			one = insert_end_elem(one, my_atoi(av[i]));
 		}
 
+		if (!check_unique_args(ac, av)) {
+			my_puterr("Arguments must be unique.\n");
+			return (84);
+		}
+
 		pushswap(one, flagged);
+		my_putchar('\n');
 	}
 
 	free_list(one);
